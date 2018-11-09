@@ -68,7 +68,7 @@ Ts.ED given some decorators to write your validation model:
 
 ## Examples
 
-#### Model validation
+### Model validation
 
 A model can used on a method controller along with [@BodyParams](/api/common/filters/decorators/BodyParams.md) or other decorators, and will
 be validated by Ajv.
@@ -103,7 +103,7 @@ export class CalendarModel {
 
 > All validation decorators are compatible with the Swagger documentation.
 
-## Validation error
+### Validation error
 
 When a validation error occur, AJV generate an errors list with a full description like this:
 
@@ -131,4 +131,22 @@ This information can be retrieved in the response headers:
  etag: W/"12-Bpa0T7/lBA6+IACzRWwBc4S6NUY"
  vary: Accept-Encoding
  x-powered-by: Express
+```
+
+## Pattern
+
+Ts.ED allow to use RegExp on Pattern decorator.  Ajv uses new RegExp(value) to create the regular expression that will be used to test data.
+ Flag `i` or `g` aren't supported.
+ 
+```typescript
+class Model {
+   // Works
+   @Pattern("^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$")
+   @Pattern(/^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$/)
+   property: string;
+
+   // Doesn't works (flag aren't supported)
+   @Pattern(/^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$/gi)
+   property: string;
+}
 ```

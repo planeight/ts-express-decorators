@@ -14,6 +14,7 @@ import {RestCtrl} from "./controllers/RestCtrl";
 import TestAcceptMimeMiddleware from "./middlewares/acceptmime";
 import "./middlewares/authentication";
 import {NotFoundMiddleware} from "./middlewares/NotFoundMiddleware";
+import {ClientsCtrl} from "./controllers/clients/ClientsCtrl";
 
 const rootDir = Path.resolve(__dirname);
 const spec = require(`${rootDir}/spec/swagger.default.json`);
@@ -27,14 +28,18 @@ const spec = require(`${rootDir}/spec/swagger.default.json`);
   },
   mount: {
     "/": [SocketPageCtrl],
-    "/rest": ["${rootDir}/controllers/Base/**.js", "${rootDir}/controllers/calendars/**.ts", ErrorsCtrl, RestCtrl, ProductsCtrl],
+    "/rest": [
+      "${rootDir}/controllers/Base/**.js",
+      "${rootDir}/controllers/calendars/**.ts",
+      ErrorsCtrl,
+      RestCtrl,
+      ProductsCtrl,
+      ClientsCtrl
+    ],
     "/rest/v1": "${rootDir}/controllers/{calendars,users}/**.ts"
   },
-
   componentsScan: ["${rootDir}/services/**/**.js"],
-
   uploadDir: "${rootDir}/uploads",
-
   serveStatic: {
     "/": "${rootDir}/views"
   },

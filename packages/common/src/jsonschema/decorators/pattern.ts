@@ -23,12 +23,19 @@ import {decoratorSchemaFactory} from "../utils/decoratorSchemaFactory";
  * * `{x,}`: Match x occurrences or more of the preceding regular expression.
  * * `{x}?`, {x,y}?, {x,}?`: Lazy versions of the above expressions.
  *
+ * > Note: Ajv uses new RegExp(value) to create the regular expression that will be used to test data. Flag `i` or `g` aren't supported
+ *
  * ## Example
  *
  * ```typescript
  * class Model {
+ *    // Works
  *    @Pattern("^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$")
  *    @Pattern(/^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$/)
+ *    property: string;
+ *
+ *    // Doesn't works (flag aren't supported)
+ *    @Pattern(/^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$/gi)
  *    property: string;
  * }
  * ```

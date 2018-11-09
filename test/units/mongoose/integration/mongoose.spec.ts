@@ -1,7 +1,7 @@
 import {Allow, ConverterService, Property, PropertyType, Required} from "@tsed/common";
 import {Model, MongooseModel} from "@tsed/mongoose";
 import {inject} from "@tsed/testing";
-import {expect} from "../../tools";
+import {expect} from "../../../tools";
 
 @Model()
 export class TestModel {
@@ -9,14 +9,16 @@ export class TestModel {
   @Allow("", null)
   email: string;
 
-  @Property() number: number;
+  @Property()
+  number: number;
 }
 
 export class AdminModel {
   @Property({name: "id"}) // this one looks like _id in response, but it should be just id
   _id: string;
 
-  @Property() role: string;
+  @Property()
+  role: string;
 }
 
 @Model({
@@ -26,7 +28,8 @@ export class ServiceModel {
   @Property({name: "id"}) // this one works as expected and turns into id
   _id: string;
 
-  @PropertyType(AdminModel) admins: AdminModel[];
+  @PropertyType(AdminModel)
+  admins: AdminModel[];
 }
 
 describe("Mongoose", () => {
