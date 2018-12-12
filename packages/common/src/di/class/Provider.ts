@@ -18,6 +18,8 @@ export class Provider<T> implements IProvider<T> {
 
   protected _provide: RegistryKey;
 
+  public alias: boolean;
+
   constructor(provide: RegistryKey) {
     this._provide = getClassOrSymbol(provide);
     this._useClass = getClass(this._provide);
@@ -126,6 +128,7 @@ export class Provider<T> implements IProvider<T> {
     provider._type = this._type;
     provider.useClass = this._useClass;
     provider._instance = this._instance;
+    provider.alias = this.alias;
 
     return provider;
   }

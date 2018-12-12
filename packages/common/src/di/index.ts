@@ -1,6 +1,7 @@
 export * from "./class/Provider";
 export * from "./class/ProviderStorable";
 export * from "./interfaces";
+export * from "./decorators/alias";
 export * from "./decorators/service";
 export * from "./decorators/overrideProvider";
 export * from "./decorators/overrideService";
