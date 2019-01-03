@@ -10,6 +10,7 @@ const rootDir = __dirname;
 
 @ServerSettings({
   rootDir,
+  port: 3000,
   acceptMimes: ["application/json"],
   logger: {
     debug: false,

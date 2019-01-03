@@ -7,6 +7,7 @@ import {
   PathParams,
   Post,
   Put,
+  QueryParams,
   Required,
   Status
 } from "@tsed/common";
@@ -72,8 +73,9 @@ export class CalendarsCtrl {
   }
 
   @Get("/")
-  @Authenticated()
-  async getAllCalendars(): Promise<Calendar[]> {
-    return this.calendarsService.query();
+  async getByQuery(@QueryParams("ids", String) ids: string[]) {
+    const calendars = await this.calendarsService.query();
+
+    return calendars.filter((calendar) => ids.indexOf(calendar.id));
   }
 }
